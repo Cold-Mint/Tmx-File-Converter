@@ -80,7 +80,9 @@ def parseLayer(xmlElement):
                             roomData[index] = "    - id: " + idDict[tile] + "\n      layer: " + layerName
                     else:
                         if roomData[index] == EmptyId:
-                            roomData[index] = "    - id: " + idDict[tile] + "\n      layer: " + layerName
+                            newId = idDict[tile]
+                            if not newId == EmptyId:
+                                roomData[index] = "    - id: " + newId + "\n      layer: " + layerName
                     index += 1
             else:
                 print("无法解析的图层 " + layerName)
@@ -97,8 +99,8 @@ if __name__ == '__main__':
         else:
             tmxPath = path
             exist = os.path.exists(path)
-            # D:\Project\Tiled\default\未命名.tmx
-            # C:\Users\Lenovo\Desktop\exportPath
+            # D:\Project\Tiled\dungeon\corridor.tmx
+            # D:\Project\Tiled\dungeon\corridor.tmx
             if not exist:
                 print("tmx文件不存在！")
             else:
